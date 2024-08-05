@@ -1,0 +1,16 @@
+npx sequelize-cli model:generate --name User --attributes username:string,email:string,password:string,phoneNumber:string,address:string
+
+npx sequelize-cli model:generate --name Category --attributes name:string
+
+npx sequelize-cli model:generate --name Type --attributes name:string
+
+npx sequelize-cli model:generate --name Recipe --attributes title:string,cookingTime:string,ingredient:string,direction:string,imgUrl:string,createdAt:date,updatedAt:date,categoryId:integer,typeId:integer,authorId:integer
+
+npx sequelize-cli model:generate --name Fact --attributes calcium:string,carbohydrate:string,calcium:string,calcium:string,cholesterol:string,fat:string,fiber:string,iron:string,monounsaturated_fat:string,polyunsaturated_fat:string,potassium:string,protein:string,saturated_fat:string,serving_size:string,sodium:string,sugar:string,trans_fat:string,vitamin_a:string,vitamin_c:string,createdAt:date,updatedAt:date,recipeId:integer
+
+
+npx sequelize seed:generate --name seed-table-users-all 
+npx sequelize seed:generate --name seed-table-categories-all 
+npx sequelize seed:generate --name seed-table-types-all 
+npx sequelize seed:generate --name seed-table-recipes-all 
+npx sequelize seed:generate --name seed-table-facts-all 

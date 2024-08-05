@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "username": "user1",
+        "email": "user1@email.com",
+        "password": "bD6#jT*n",
+        "phoneNumber": "8479676697",
+        "address": "21056 Ludington Crossing"
+    },
+    {
+        "id": 2,
+        "username": "user2",
+        "email": "user2@email.com",
+        "password": "xA7='&LE|",
+        "phoneNumber": "5635143444",
+        "address": "252 Lake View Court"
+    },
+    {
+        "id": 3,
+        "username": "user3",
+        "email": "user3@email.com",
+        "password": "yJ0*t5*'|",
+        "phoneNumber": "7231094986",
+        "address": "997 Fuller Way"
+    }
+]

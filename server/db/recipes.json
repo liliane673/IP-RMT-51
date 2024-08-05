@@ -1,0 +1,13 @@
+[
+    {
+        "id": 1,
+        "title": "Codependent Lesbian Space Alien Seeks Same",
+        "cookingTime": 10,
+        "ingredient": "Donec semper sapien a libero.",
+        "direction": "Donec semper sapien a libero.",
+        "imgUrl": "http://dummyimage.com/131x100.png/ff4444/ffffff",
+        "categoryId": 1,
+        "typeId": 1,
+        "authorId": 2
+    }
+]
