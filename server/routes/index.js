@@ -26,8 +26,9 @@ router.use('/recipes', require('./recipes'))
 //saved-recipes endpoints
 router.use('/my-saved-recipes', require('./saved-recipes.js'))
 
-//get fat secret token endpoints
-router.use('/generate-token-fatsecret', require('./tokenFatSecret.js'))
+//fat secret endpoints
+router.use('/connection-fatsecret', require('./fatSecret.js'))
+
 
 router.use(errorHandler);
 

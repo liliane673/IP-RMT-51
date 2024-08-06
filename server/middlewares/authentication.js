@@ -5,7 +5,7 @@ const { signToken, verifyToken } = require('../helpers/jwt')
 //add middleware
 async function authentication(req, res, next) {
     const access_token = req.headers.authorization;
-    console.log(access_token, 'accesstoken====>>');
+    // console.log(access_token, 'accesstoken====>>');
 
     try {
         if (!access_token) {
