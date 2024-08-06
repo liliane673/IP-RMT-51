@@ -1,4 +1,4 @@
-const OpenAI = require("openai");
+const { GoogleGenerativeAI } = require("@google/generative-ai");
 const axios = require('axios');
 require('dotenv').config()
 
@@ -7,6 +7,7 @@ const { MySavedRecipe, Recipe, User } = require('../models')
 module.exports = class OpenAiController {
     static async getRecipeRecommendation(req, res, next) {
         try {
+            const user = req.user.user
             const data = await MySavedRecipe.findAll({
                 order: [['id', 'ASC']],
                 include:
@@ -21,35 +22,38 @@ module.exports = class OpenAiController {
                             model: Recipe,
                         }
                     ],
-
             })
+            // console.log(data);
 
-            const input = req.body
+            const { preference } = req.body
+            // console.log(preference, '>>>>>')
 
-            const openai = new OpenAI({
-                apiKey: process.env.OPEN_AI_API_KEY
-            });
-            const completion = await openai.chat.completions.create({
-                messages: [{
-                    role: "system",
-                    content: `give me recommendation recipes above if i want to ${input}. the response must be in JSON with the format like this :
+            const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+
+            const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+
+
+            const prompt = `give me recommendation recipes above to ${preference}. the response must be in JSON with the format like this :
+            {
+                "Response": {...},
+                "Recommendation Recipes":
+                [
                     {
-                        "Response": {...},
-                        "Recommendation Recipes":{...}
-                        "Why":{...}
+                        "Recipe Name" : {...}
+                        "Ingredients" : {...}
+                        "Instrucions" : {...}
+                        "Why":{...} 
                         "How to Enhance":{...}
-                    }`
-                }],
-                model: "gpt-4o-mini",
-            });
-            // const completion = await openai.chat.completions.create({
-            //     messages: [{ role: "system", content: "You are a helpful assistant." }],
-            //     model: "gpt-4o-mini",
-            // });
+                    }
+                ]
+            }`
 
-            console.log(completion.choices[0]);
+            const result = await model.generateContent(prompt);
+            const response = await result.response;
+            const text = response.text();
+            console.log(text);
 
-            console.log(openai)
+            res.status(201).json(text)
         } catch (err) {
             next(err)
         }

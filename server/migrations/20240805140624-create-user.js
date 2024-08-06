@@ -24,6 +24,19 @@ module.exports = {
       address: {
         type: Sequelize.STRING
       },
+      isSubscribed: {
+        type: Sequelize.STRING,
+        defaultValue: false,
+      },
+      bodyweight: {
+        type: Sequelize.INTEGER
+      },
+      height: {
+        type: Sequelize.INTEGER
+      },
+      preference: {
+        type: Sequelize.STRING
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

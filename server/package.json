@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@google/generative-ai": "^0.16.0",
     "axios": "^1.7.3",
     "bcryptjs": "^2.4.3",
     "dotenv": "^16.4.5",
