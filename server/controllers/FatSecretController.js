@@ -34,7 +34,33 @@ module.exports = class FatSecretController {
             res.status(200).json(response.data);
         } catch (err) {
             next(err)
-            // console.log(err.response.data)
+        }
+    }
+
+    static async getRecipes(req, res, next) {
+        try {
+            const access_token = req.headers.authorization;
+            console.log(access_token, 'accesstoken fatsecret====>>');
+            const [bearer, token] = access_token.split(" ");
+
+            let response = await axios({
+                url: "https://platform.fatsecret.com/rest/server.api",
+                method: "get",
+                headers: {
+                    Authorization: "Bearer " + token
+                },
+                params: {
+                    method: "recipe.get.v2",
+                    recipe_id: 5,
+                    format: "json",
+                    max_results: 10
+                }
+            })
+            console.log(response.data)
+
+            res.status(200).json(response.data);
+        } catch (err) {
+            next(err)
         }
     }
 };

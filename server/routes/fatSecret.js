@@ -6,6 +6,6 @@ const router = require('express').Router()
 router.post('/get-token', FatSecretController.getToken)
 
 //get fat secret recipes
-// router.post('/get-recipes', FatSecretController.getRecipes)
+router.get('/get-recipes', FatSecretController.getRecipes)
 
 module.exports = router;
