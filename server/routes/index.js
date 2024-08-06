@@ -29,6 +29,9 @@ router.use('/my-saved-recipes', require('./saved-recipes.js'))
 //fat secret endpoints
 router.use('/connection-fatsecret', require('./fatSecret.js'))
 
+//openAi endpoints
+router.use('/recipe-recommendation', require('./openAi.js'))
+
 
 router.use(errorHandler);
 
