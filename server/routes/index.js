@@ -1,3 +1,7 @@
+const authentication = require('../middlewares/authentication')
+const errorHandler = require('../middlewares/errorHandler');
+const { route } = require('./users');
+
 const router = require('express').Router()
 
 router.get('/', (req, res) => {
@@ -7,5 +11,24 @@ router.get('/', (req, res) => {
 //user endpoints
 router.use('/', require('./users'))
 
+//authentication 
+router.use(authentication)
+
+//categories endpoints
+router.use('/categories', require('./categories'))
+
+//types endpoints
+router.use('/types', require('./types'))
+
+//recipes endpoints
+router.use('/recipes', require('./recipes'))
+
+//saved-recipes endpoints
+router.use('/my-saved-recipes', require('./saved-recipes.js'))
+
+//get fat secret token endpoints
+router.use('/generate-token-fatsecret', require('./tokenFatSecret.js'))
+
+router.use(errorHandler);
 
 module.exports = router;

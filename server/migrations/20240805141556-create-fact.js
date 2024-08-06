@@ -63,16 +63,6 @@ module.exports = {
       vitamin_c: {
         type: Sequelize.STRING
       },
-      recipeId: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        references: {
-          model: {
-            tableName: "Recipes",
-          },
-          key: "id"
-        }
-      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

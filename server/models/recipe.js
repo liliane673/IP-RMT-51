@@ -11,10 +11,10 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Recipe.hasOne(models.Fact)
-      Recipe.belongsTo(models.User, { foreignKey: "authorId" })
+      Recipe.belongsTo(models.Fact, { foreignKey: "factId" })
       Recipe.belongsTo(models.Category, { foreignKey: "categoryId" })
       Recipe.belongsTo(models.Type, { foreignKey: "typeId" })
+      Recipe.hasMany(models.MySavedRecipe, { foreignKey: "recipeId" })
     }
   }
   Recipe.init({
@@ -34,7 +34,8 @@ module.exports = (sequelize, DataTypes) => {
     updatedAt: DataTypes.DATE,
     categoryId: DataTypes.INTEGER,
     typeId: DataTypes.INTEGER,
-    authorId: DataTypes.INTEGER
+    author: DataTypes.STRING,
+    factId: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Recipe',

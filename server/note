@@ -8,9 +8,28 @@ npx sequelize-cli model:generate --name Recipe --attributes title:string,cooking
 
 npx sequelize-cli model:generate --name Fact --attributes calcium:string,carbohydrate:string,calcium:string,calcium:string,cholesterol:string,fat:string,fiber:string,iron:string,monounsaturated_fat:string,polyunsaturated_fat:string,potassium:string,protein:string,saturated_fat:string,serving_size:string,sodium:string,sugar:string,trans_fat:string,vitamin_a:string,vitamin_c:string,createdAt:date,updatedAt:date,recipeId:integer
 
+npx sequelize-cli model:generate --name MySavedRecipe --attributes userId:integer,recipeId:integer
+
 
 npx sequelize seed:generate --name seed-table-users-all 
 npx sequelize seed:generate --name seed-table-categories-all 
 npx sequelize seed:generate --name seed-table-types-all 
 npx sequelize seed:generate --name seed-table-recipes-all 
 npx sequelize seed:generate --name seed-table-facts-all 
+npx sequelize seed:generate --name seed-table-mmysavedrecipes-all 
+
+
+npx sequelize db:create
+npx sequelize db:migrate --name 20240805140624-create-user
+npx sequelize db:migrate --name 20240805140625-create-category
+npx sequelize db:migrate --name 20240805140626-create-type 
+npx sequelize db:migrate --name 20240805141556-create-fact
+npx sequelize db:migrate --name 20240805140811-create-recipe
+npx sequelize db:migrate --name 20240806062129-create-my-saved-recipe
+
+npx sequelize db:seed --seed 20240805140954-seed-table-users-all
+npx sequelize db:seed --seed 20240805140954-seed-table-categories-all
+npx sequelize db:seed --seed 20240805140955-seed-table-types-all
+npx sequelize db:seed --seed 20240805140956-seed-table-facts-all
+npx sequelize db:seed --seed 20240805140955-seed-table-recipes-all
+npx sequelize db:seed --seed 20240806070212-seed-table-mmysavedrecipes-all

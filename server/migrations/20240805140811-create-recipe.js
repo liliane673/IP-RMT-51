@@ -12,6 +12,9 @@ module.exports = {
       title: {
         type: Sequelize.STRING
       },
+      author: {
+        type: Sequelize.STRING
+      },
       cookingTime: {
         type: Sequelize.STRING
       },
@@ -50,12 +53,12 @@ module.exports = {
           key: "id"
         }
       },
-      authorId: {
+      factId: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
           model: {
-            tableName: "Users",
+            tableName: "Facts",
           },
           key: "id"
         }

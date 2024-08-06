@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Fact.belongsTo(models.Recipe, { foreignKey: "recipeId" })
+      Fact.hasOne(models.Recipe, { foreignKey: "factId" })
     }
   }
   Fact.init({
@@ -34,8 +34,7 @@ module.exports = (sequelize, DataTypes) => {
     vitamin_a: DataTypes.STRING,
     vitamin_c: DataTypes.STRING,
     createdAt: DataTypes.DATE,
-    updatedAt: DataTypes.DATE,
-    recipeId: DataTypes.INTEGER
+    updatedAt: DataTypes.DATE
   }, {
     sequelize,
     modelName: 'Fact',
