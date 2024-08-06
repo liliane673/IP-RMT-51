@@ -32,6 +32,9 @@ router.use('/connection-fatsecret', require('./fatSecret.js'))
 //openAi endpoints
 router.use('/recipe-recommendation', require('./openAi.js'))
 
+//midtrans endpoints
+router.use('/connection-midtrans', require('./midtrans.js'))
+
 
 router.use(errorHandler);
 

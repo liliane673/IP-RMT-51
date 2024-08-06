@@ -23,6 +23,10 @@ function errorHandler(err, req, res, next) {
             status = 404
             message = `Recipe not found`
             break;
+        case "Already_subscribe":
+            status = 400
+            message = `You already subscribed`
+            break;
     }
     console.log(status);
     res.status(status).json({ message: message });
