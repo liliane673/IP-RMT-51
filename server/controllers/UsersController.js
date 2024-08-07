@@ -56,4 +56,28 @@ module.exports = class UserController {
             next(err)
         }
     }
+
+    static async editProfile(req, res, next) {
+        try {
+            const userId = req.params.id;
+            // console.log(userId, 'userId===>')
+
+            const { bodyweight, height, preference } = req.body
+            // console.log(req.body, 'req.body=====>>>>')
+
+            const data = await User.findByPk(Number(userId));
+            // console.log(data, 'data====>')
+            if (data) {
+                const result = await data.update({ bodyweight, height, preference });
+                // console.log(result, 'result====>>')
+                res.status(200).json(result)
+            } else {
+                res.status(404).json({ message: "User not found" })
+            }
+
+        } catch (err) {
+            next(err)
+        }
+    }
+
 }

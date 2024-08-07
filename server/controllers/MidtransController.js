@@ -1,4 +1,3 @@
-require('dotenv').config()
 const { User } = require('../models')
 const midtransClient = require('midtrans-client');
 

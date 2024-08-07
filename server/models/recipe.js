@@ -12,8 +12,6 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       Recipe.belongsTo(models.Fact, { foreignKey: "factId" })
-      Recipe.belongsTo(models.Category, { foreignKey: "categoryId" })
-      Recipe.belongsTo(models.Type, { foreignKey: "typeId" })
       Recipe.hasMany(models.MySavedRecipe, { foreignKey: "recipeId" })
     }
   }
@@ -26,15 +24,13 @@ module.exports = (sequelize, DataTypes) => {
         notEmpty: { msg: "Title is required" },
       }
     },
-    cookingTime: DataTypes.INTEGER,
-    ingredient: DataTypes.STRING,
-    direction: DataTypes.STRING,
+    grams_per_portion: DataTypes.STRING,
+    number_of_servings: DataTypes.INTEGER,
+    ingredient: DataTypes.JSON,
+    direction: DataTypes.JSON,
     imgUrl: DataTypes.STRING,
-    createdAt: DataTypes.DATE,
-    updatedAt: DataTypes.DATE,
-    categoryId: DataTypes.INTEGER,
-    typeId: DataTypes.INTEGER,
-    author: DataTypes.STRING,
+    category: DataTypes.STRING,
+    type: DataTypes.STRING,
     factId: DataTypes.INTEGER
   }, {
     sequelize,

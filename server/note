@@ -35,3 +35,15 @@ npx sequelize db:seed --seed 20240805140955-seed-table-recipes-all
 npx sequelize db:seed --seed 20240806070212-seed-table-mmysavedrecipes-all
 
 npx nodemon app.js
+
+
+npx sequelize db:drop
+npx sequelize db:create
+npx sequelize db:migrate --name 20240805140624-create-user
+npx sequelize db:migrate --name 20240805141556-create-fact
+npx sequelize db:migrate --name 20240805140811-create-recipe
+npx sequelize db:migrate --name 20240806062129-create-my-saved-recipe
+
+npx sequelize db:seed --seed 20240805140954-seed-table-users-all
+npx sequelize db:seed --seed 20240805140955-seed-table-recipes-all
+npx sequelize db:seed --seed 20240806070212-seed-table-mmysavedrecipes-all

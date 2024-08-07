@@ -1,6 +1,5 @@
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 const axios = require('axios');
-require('dotenv').config()
 
 const { MySavedRecipe, Recipe, User } = require('../models')
 

@@ -19,6 +19,10 @@ function errorHandler(err, req, res, next) {
             status = 403
             message = "You are not authorized"
             break;
+        case "User not found":
+            status = 404
+            message = `User not found`
+            break;
         case "Recipe not found":
             status = 404
             message = `Recipe not found`
