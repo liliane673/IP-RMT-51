@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "jest -detectOpenHandles --forceExit --runInBand --verbose",
+    "test": "npx jest --detectOpenHandles --forceExit --runInBand --verbose --silent --coverage",
     "dev": "npx nodemon bin/www",
     "start": "npx node bin/www"
   },

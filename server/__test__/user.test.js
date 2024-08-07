@@ -276,9 +276,6 @@ describe("Test Endpoint User", () => {
                 expect(status).toBe(400);
                 expect(body).toHaveProperty("message", "Email must be in format email");
             });
-
-
-
         });
     });
 
