@@ -41,7 +41,23 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
     phoneNumber: DataTypes.STRING,
-    address: DataTypes.STRING
+    address: DataTypes.STRING,
+    isSubscribed: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    bodyweight: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    height: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    preference: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
   }, {
     sequelize,
     modelName: 'User',

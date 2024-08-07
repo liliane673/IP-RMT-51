@@ -38,4 +38,24 @@ module.exports = class SavedRecipeController {
             next(err)
         }
     }
+
+    static async deleteSavedRecipes(req, res, next) {
+        try {
+            const savedRecipeId = req.params.id;
+            // console.log(savedRecipeId, '>>>>')
+
+            const data = await MySavedRecipe.findByPk(Number(savedRecipeId));
+            // console.log(data, 'ini di controller===>')
+
+            if (data) {
+                await data.destroy();
+                res.status(200).json({ message: `Recipe success to delete!` })
+            } else {
+                res.status(404).json({ message: "Recipe not found" })
+            }
+        } catch (err) {
+            next(err)
+        }
+    }
+
 }

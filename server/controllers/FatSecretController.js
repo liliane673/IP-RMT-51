@@ -1,4 +1,5 @@
 const axios = require('axios');
+const cron = require('node-cron');
 require('dotenv').config()
 
 module.exports = class FatSecretController {
@@ -37,8 +38,17 @@ module.exports = class FatSecretController {
         }
     }
 
+
     static async getRecipes(req, res, next) {
+        cron.schedule('* * * * * *', () => {
+            console.log('running a task every minute >>');
+        });
+
         try {
+            cron.schedule('* * * * * *', () => {
+                console.log('running a task every minute >>');
+            });
+
             const access_token = req.headers.authorization;
             console.log(access_token, 'accesstoken fatsecret====>>');
             const [bearer, token] = access_token.split(" ");

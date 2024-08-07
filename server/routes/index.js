@@ -2,6 +2,7 @@ const authentication = require('../middlewares/authentication')
 const errorHandler = require('../middlewares/errorHandler');
 const { route } = require('./users');
 
+
 const router = require('express').Router()
 
 router.get('/', (req, res) => {
