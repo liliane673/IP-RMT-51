@@ -72,7 +72,7 @@ module.exports = {
     let newDataRecipe = [];
 
     try {
-      for (let i = 1; i < 30; i++) {
+      for (let i = 1; i < 20; i++) {
         const recipe_id = Math.ceil(Math.random() * 1_00 + 12)
 
         const dataRecipe = await getRecipes(fs_token.data.access_token, recipe_id)
@@ -102,10 +102,13 @@ module.exports = {
         }
       }
       //console.dir({ newFact }, { depth: 4 })
-      //console.dir({ newDataRecipe }, { depth: 4 })
+      console.dir({ newDataRecipe }, { depth: 4 })
       await queryInterface.bulkInsert('Facts', newFact)
-      await Recipe.bulkCreate(newDataRecipe)
-      // await queryInterface.bulkInsert('Recipes', newDataRecipe);
+      // await Recipe.bulkCreate(newDataRecipe)
+      await queryInterface.bulkInsert('Recipes', newDataRecipe, {}, {
+        ingredient: { type: new Sequelize.JSON() },
+        direction: { type: new Sequelize.JSON() }
+      });
     } catch (error) {
       console.log(error.message)
       console.log(error);

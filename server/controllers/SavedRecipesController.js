@@ -10,6 +10,7 @@ module.exports = class SavedRecipeController {
                     [
                         {
                             model: User,
+                            attributes: ["username", "email", "phoneNumber", "address", "isSubscribed", "bodyweight", "height", "preference"],
                             where: {
                                 id: user.id
                             },

@@ -8,6 +8,7 @@ module.exports = class UserController {
     static async login(req, res, next) {
         try {
             const { email, password } = req.body;
+            // console.log(req.body, '=====>>')
             if (!email) {
                 res.status(400).json({ message: "Email is required" });
                 return;
@@ -18,7 +19,7 @@ module.exports = class UserController {
             }
 
             const user = await User.findOne({ where: { email } })
-            // console.log(user);
+            // console.log(user, '===>>>>');
             if (!user) {
                 res.status(401).json({ message: "Invalid email or password" });
                 return;
@@ -66,11 +67,21 @@ module.exports = class UserController {
             // console.log(req.body, 'req.body=====>>>>')
 
             const data = await User.findByPk(Number(userId));
-            // console.log(data, 'data====>')
+            console.log(data, 'data====>')
             if (data) {
                 const result = await data.update({ bodyweight, height, preference });
-                // console.log(result, 'result====>>')
-                res.status(200).json(result)
+                console.log(result, 'result====>>')
+                res.status(201).json({
+                    id: result.id,
+                    username: result.username,
+                    email: result.email,
+                    phoneNumber: result.phoneNumber,
+                    address: result.address,
+                    isSubscribed: result.isSubscribed,
+                    bodyweight: result.bodyweight,
+                    height: result.height,
+                    preference: result.preference
+                })
             } else {
                 res.status(404).json({ message: "User not found" })
             }

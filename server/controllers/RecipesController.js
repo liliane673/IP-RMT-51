@@ -1,4 +1,4 @@
-const { Recipe, Fact, User, Category, Type } = require('../models')
+const { Recipe, Fact, User } = require('../models')
 
 module.exports = class RecipeController {
     static async getAllRecipes(req, res, next) {
@@ -10,13 +10,7 @@ module.exports = class RecipeController {
                     [
                         {
                             model: Fact,
-                        },
-                        {
-                            model: Category
-                        },
-                        {
-                            model: Type
-                        },
+                        }
                     ],
 
             })
@@ -37,12 +31,6 @@ module.exports = class RecipeController {
                     [
                         {
                             model: Fact,
-                        },
-                        {
-                            model: Category
-                        },
-                        {
-                            model: Type
                         },
                     ],
             })

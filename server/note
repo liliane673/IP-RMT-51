@@ -47,3 +47,12 @@ npx sequelize db:migrate --name 20240806062129-create-my-saved-recipe
 npx sequelize db:seed --seed 20240805140954-seed-table-users-all
 npx sequelize db:seed --seed 20240805140955-seed-table-recipes-all
 npx sequelize db:seed --seed 20240806070212-seed-table-mmysavedrecipes-all
+
+
+npx sequelize db:migrate:undo:all --env test
+npx sequelize db:migrate --env test
+npx sequelize db:seed:all --env test
+
+npx sequelize db:migrate:undo:all  && npx sequelize db:migrate  && npx sequelize db:seed:all
+
+npx sequelize db:migrate:undo:all --env test && npx sequelize db:migrate --env test && npx sequelize db:seed:all --env test
