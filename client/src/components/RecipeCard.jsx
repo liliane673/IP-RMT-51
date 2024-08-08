@@ -15,7 +15,7 @@ export default function RecipeCard({ recipe }) {
                 Category : {recipe.category}
                 {/* tes */}
             </p>
-            <Link to={"/recipe/detail/" + recipe.id} className="btn btn-primary" data-mdb-ripple-init="">
+            <Link to={"/login"} className="btn btn-primary" data-mdb-ripple-init="">
                 Recipe Detail
             </Link>
         </div>
