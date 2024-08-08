@@ -73,7 +73,7 @@ export default function FormUpdate({ user }) {
                     <label htmlFor="register-preference">Preference</label>
                     <select class="form-select" id="register-preference" name="preference" onChange={(e) => setPreference(e.target.value)}>
                         value={preference}
-                        <option selected disabled>Choose...</option>
+                        <option disabled>Choose...</option>
                         <option value="maintain bodyweight" >maintain bodyweight</option>
                         <option value="loose bodyweight">loose bodyweight</option>
                         <option value="gain bodyweight" >gain bodyweight</option>

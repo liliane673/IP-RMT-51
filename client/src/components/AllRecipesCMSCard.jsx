@@ -1,29 +1,16 @@
 import { useEffect, useState } from "react";
 import RecipeCMSCard from "../components/RecipeCMSCard";
 import axiosInstance from "../utils/axios";
+import { useSelector, useDispatch } from 'react-redux'
+import { fetchRecipes } from "../store/sliceRecipe";
 
 export default function AllRecipesCMSCard() {
-    const [recipeList, setRecipeLists] = useState([]);
-
-    const fetchRecipes = async () => {
-        try {
-            let { data } = await axiosInstance({
-                method: 'get',
-                url: '/recipes',
-                headers: {
-                    "Authorization-AccessToken": "Bearer " + localStorage.getItem("token")
-                }
-            });
-            // console.log(data, '---> ini di AllRecipesCMSCard');
-            setRecipeLists(data)
-        } catch (err) {
-            console.log(err)
-            console.log(err.response.data)
-        }
-    }
+    // const [recipeList, setRecipeLists] = useState([]);
+    const dispatch = useDispatch()
+    const recipes = useSelector(state => state.recipes.all)
 
     useEffect(() => {
-        fetchRecipes()
+        dispatch(fetchRecipes())
     }, [])
 
     return <>
@@ -32,7 +19,7 @@ export default function AllRecipesCMSCard() {
             alignItems: "center",
         }}>
             {
-                recipeList.map((recipe) => {
+                recipes.map((recipe) => {
                     return <RecipeCMSCard key={recipe.id} recipe={recipe} />
                 })
             }

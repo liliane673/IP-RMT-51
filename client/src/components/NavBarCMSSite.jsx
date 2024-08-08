@@ -2,47 +2,25 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axiosInstance from "../utils/axios";
-import { OutlineButtons } from "./Buttons";
+import { useSelector, useDispatch } from 'react-redux'
+import { fetchUser } from "../store/sliceUser";
+
 
 export default function NavBarCMSSite() {
     const navigate = useNavigate()
+    const dispatch = useDispatch()
+    const user = useSelector(state => state.user.all)
 
     const logout = () => {
         localStorage.clear();
         navigate("/")
     }
 
-    const [user, setUser] = useState({})
-    const fecthUser = async () => {
-        try {
-            let { data } = await axiosInstance({
-                method: 'get',
-                url: '/get-user',
-                headers: {
-                    'Authorization-AccessToken': "Bearer " + localStorage.getItem("token")
-                }
-            })
-            // console.log(data, '====> data user di cms');
-            setUser(data)
-        } catch (err) {
-            console.log(err)
-        }
-
-    }
     useEffect(() => {
-        fecthUser()
+        dispatch(fetchUser())
         // console.log(user)
     }, [])
 
-    const updateUser = async () => {
-        const data = await axiosInstance({
-            method: 'patch',
-            url: '/connection-midtrans/user-update',
-            headers: {
-                'Authorization-AccessToken': "Bearer " + localStorage.getItem("token")
-            }
-        })
-    }
 
     const handleSubcribe = async () => {
         try {

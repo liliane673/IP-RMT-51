@@ -3,11 +3,17 @@ import axiosInstance from "../../utils/axios";
 import NavBarCMSSite from "../../components/NavBarCMSSite";
 import { OutlineButtons } from "../../components/Buttons";
 import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from 'react-redux'
+import { fetchUser } from "../../store/sliceUser";
 
 
 export default function RecipeRecommendation() {
+    const dispatch = useDispatch()
+    const user = useSelector(state => state.user.all)
+    // console.log(user, '======INI REDUX')
+
     const [recommendationRecipes, setRecommendationRecipes] = useState([]);
-    const [user, setUser] = useState({})
+    // const [user, setUser] = useState({})
 
     const handleRecommendationRecipe = async () => {
         console.log('fetch recommendation===>>>>')
@@ -37,25 +43,8 @@ export default function RecipeRecommendation() {
     }
 
 
-    const fecthUser = async () => {
-        try {
-            let { data } = await axiosInstance({
-                method: 'get',
-                url: '/get-user',
-                headers: {
-                    'Authorization-AccessToken': "Bearer " + localStorage.getItem("token")
-                }
-            })
-            setUser(data)
-            // console.log(data, '====> data user di cms');
-        } catch (err) {
-            console.log(err)
-        }
-    }
-
     useEffect(() => {
-        fecthUser()
-        // console.log(user)
+        dispatch(fetchUser())
     }, [])
 
     const handleEditUser = () => {

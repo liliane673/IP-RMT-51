@@ -3,8 +3,13 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axiosInstance from "../../utils/axios";
 import NavBarCMSSite from "../../components/NavBarCMSSite";
+import { useSelector, useDispatch } from 'react-redux'
+import { fetchUser } from "../../store/sliceUser";
 
 export default function DetailOneRecipe() {
+    const dispatch = useDispatch()
+    const user = useSelector(state => state.user.all)
+
     const { id } = useParams();
     const [recipe, setRecipe] = useState({
         id: 0,
@@ -14,7 +19,8 @@ export default function DetailOneRecipe() {
         categoryId: 0,
         authorId: 0
     })
-    const [user, setUser] = useState({})
+    // const [user, setUser] = useState({})
+
 
     const fecthRecipe = async () => {
         try {
@@ -35,30 +41,9 @@ export default function DetailOneRecipe() {
 
     useEffect(() => {
         fecthRecipe(id)
-        fecthUser()
+        dispatch(fetchUser())
         console.log(user, '=====> user')
     }, [id])
-
-    const fecthUser = async () => {
-        try {
-            let { data } = await axiosInstance({
-                method: 'get',
-                url: '/get-user',
-                headers: {
-                    'Authorization-AccessToken': "Bearer " + localStorage.getItem("token")
-                }
-            })
-            setUser(data)
-            // console.log(data, '====> data user di cms');
-        } catch (err) {
-            console.log(err)
-        }
-    }
-
-    // useEffect(() => {
-    //     fecthUser()
-    //     console.log(user, '=====> user')
-    // }, [])
 
 
     return <>
