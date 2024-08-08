@@ -44,7 +44,7 @@ async function getRecipes(access_token, recipe_id) {
             max_results: 10
         }
     })
-    // console.log(data);
+    console.log(data);
     if (data.error) {
         return null;
     } else {
