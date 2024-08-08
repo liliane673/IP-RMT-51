@@ -13,6 +13,7 @@ import MainPage from './pages/cmsSite/MainPage.jsx';
 import MySavedRecipes from './pages/cmsSite/MySavedRecipes.jsx';
 import RecipeRecommendation from './pages/cmsSite/RecipeRecommendation.jsx';
 import UpdateMyData from './pages/cmsSite/UpdateMyData.jsx';
+import DetailOneRecipe from './pages/cmsSite/DetailOneRecipe.jsx';
 
 export const router = createBrowserRouter([
     {
@@ -58,7 +59,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: "/cms/recipes/:id",
-                element: <DetailOnePostPub />
+                element: <DetailOneRecipe />
             },
             {
                 path: "/cms/my-saved-recipes",

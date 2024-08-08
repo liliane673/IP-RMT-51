@@ -22,9 +22,11 @@ export default function RecipeRecommendation() {
                     preference: user.preference
                 }
             });
-            setRecommendationRecipes(data)
+            console.log(data)
+
             const newData = JSON.parse(data);
             console.log(newData, '---> ini di setRecommendationRecipes')
+            setRecommendationRecipes(data)
         } catch (err) {
             console.log(err)
             console.log(err.response.data)

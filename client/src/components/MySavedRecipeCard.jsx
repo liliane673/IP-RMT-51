@@ -67,7 +67,7 @@ export default function MySavedRecipeCard({ recipe, deleteMySavedRecipe }) {
                 <br></br>
 
                 <div className="container-fluid d-flex flex-wrap gap-1">
-                    <Link to="/">
+                    <Link to={"/cms/recipes/" + recipe.id}>
                         <OutlineButtons className="btn btn-primary">
                             See Detail
                         </OutlineButtons>

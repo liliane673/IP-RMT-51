@@ -40,34 +40,14 @@ export default function RecipeCMSCard({ recipe }) {
                     <span className="card-text">Number of serving: {recipe.number_of_servings}</span>
                 </div>
                 <br></br>
-                <span className="badge rounded-pill text-bg-secondary" style={{ fontSize: "15px" }}>Category: {recipe.category}</span>
+                <span className="badge rounded-pill text-bg-secondary" style={{ fontSize: "15px", marginBottom: "5px" }}>Category: {recipe.category}</span>
                 <br></br>
                 <span className="badge rounded-pill text-bg-secondary" style={{ fontSize: "15px" }}>Type: {recipe.type}</span>
-                {/* <div>
-                    <p className="card-text" >Ingredients :
-                        {
-                            recipe.ingredient.map((ingredient) => {
-                                console.log(ingredient, '====>disini')
-                                return <li>{ingredient.ingredient_description}</li>
-                            })
-                        }
-                    </p>
-                </div>
-                <div>
-                    <p className="card-text" >Directions :
-                        {
-                            recipe.direction.map((direction) => {
-                                console.log(direction, '====>disini')
-                                return <li>{direction.direction_description}</li>
-                            })
-                        }
-                    </p>
-                </div> */}
                 <br></br>
                 <br></br>
 
                 <div className="container-fluid d-flex flex-wrap gap-1">
-                    <Link to="/">
+                    <Link to={"/cms/recipes/" + recipe.id}>
                         <OutlineButtons className="btn btn-primary">
                             See Detail
                         </OutlineButtons>
