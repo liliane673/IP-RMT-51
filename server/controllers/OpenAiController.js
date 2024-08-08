@@ -68,10 +68,11 @@ module.exports = class OpenAiController {
 
             const result = await model.generateContent(prompt);
             const response = await result.response;
-            const text = response.text();
+            let text = response.text();
+
             console.log(text);
 
-            res.status(201).json(text)
+            res.status(200).json({ text })
         } catch (err) {
             next(err)
         }

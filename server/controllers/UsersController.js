@@ -9,20 +9,22 @@ const { OAuth2Client } = require('google-auth-library');
 module.exports = class UserController {
     static async googleLogin(req, res, next) {
         try {
-            // console.log(req.body, '=====>controller')
+            console.log(req.body, '=====>controller')
             if (!req.body.googleToken) {
                 throw { name: "MissingGoogleToken" }
             }
 
             const client = new OAuth2Client();
+            console.log(client, 'client')
             const ticket = await client.verifyIdToken({
                 idToken: req.body.googleToken,
                 audience: process.env.GOOGLE_CLIENT_ID,  // Specify the CLIENT_ID of the app that accesses the backend
                 // Or, if multiple clients access the backend:
                 //[CLIENT_ID_1, CLIENT_ID_2, CLIENT_ID_3]
             });
+            console.log(ticket, 'ticket')
             const response = ticket.getPayload();
-            // console.log(response)
+            console.log(response, '====>>')
             // const userid = payload['sub'];
             // If the request specified a Google Workspace domain:
             // const domain = payload['hd'];
