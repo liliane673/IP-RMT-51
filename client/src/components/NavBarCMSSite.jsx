@@ -34,9 +34,51 @@ export default function NavBarCMSSite() {
         // console.log(user)
     }, [])
 
+    const updateUser = async () => {
+        const data = await axiosInstance({
+            method: 'patch',
+            url: '/connection-midtrans/user-update',
+            headers: {
+                'Authorization-AccessToken': "Bearer " + localStorage.getItem("token")
+            }
+        })
+    }
+
+    const handleSubcribe = async () => {
+        try {
+            const { data } = await axiosInstance({
+                method: 'post',
+                url: '/connection-midtrans/get-token',
+                headers: {
+                    'Authorization-AccessToken': "Bearer " + localStorage.getItem("token")
+                }
+            })
+
+            window.snap.pay(data.midtransToken.token, {
+                onSuccess: async function (result) {
+                    console.log(result);
+                    const data = await axiosInstance({
+                        method: 'patch',
+                        url: '/connection-midtrans/user-update',
+                        headers: {
+                            'Authorization-AccessToken': "Bearer " + localStorage.getItem("token")
+                        }
+                    })
+                    console.log(data, '---->>> di client ')
+                }
+            })
+
+
+            // console.log(data, '====> dat
+
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     return <nav className="navbar sticky-top navbar-expand-lg navbar-light bg-body-tertiary ">
         <div className="col-md" style={{ display: "flex", marginLeft: 30 }}>
-            <Link className="navbar-brand" to="/cms/posts">
+            <Link className="navbar-brand" to="/cms/recipes">
                 Hack Healthy Recipes
             </Link>
         </div>
@@ -68,23 +110,31 @@ export default function NavBarCMSSite() {
                 style={{ justifyContent: "end", alignItems: "center", columnGap: 20 }}
             >
                 <span>Hai, {user.username} !</span>
-                {
+                <div id="snap-container"></div>
+                <button onClick={handleSubcribe}
+                    data-mdb-ripple-init=""
+                    type="button"
+                    className="btn btn-outline-primary"
+                >
+                    Subscribe
+                </button>
+                {/* {
                     user?.isSubscribed === "false"
-                        ? <OutlineButtons onClick={() => logout()}
+                        ? <button onClick={() => handleSubcribe()}
                             data-mdb-ripple-init=""
                             type="button"
-                            className="btn btn-primary me-3"
+                            className="btn btn-outline-primary"
                         >
                             Subscribe
-                        </OutlineButtons>
-                        : <button onClick={() => logout()}
+                        </button>
+                        : <button
                             data-mdb-ripple-init=""
                             type="button"
                             className="btn btn-primary me-3"
                         >
                             Subscribed
                         </button>
-                }
+                } */}
                 <button onClick={() => logout()}
                     data-mdb-ripple-init=""
                     type="button"

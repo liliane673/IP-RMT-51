@@ -22,10 +22,13 @@ export default function RecipeRecommendation() {
                     preference: user.preference
                 }
             });
-            console.log(data)
+            // console.log(data)
+            // const count = data.length;
+            // console.log(count, count - 3);
 
-            const newData = JSON.parse(data);
-            console.log(newData, '---> ini di setRecommendationRecipes')
+            // const newData = console.log(data.substr(7, count - 3), '====substring')
+            // const dataparse = JSON.parse(newData);
+            // console.log(newData, '---> ini di setRecommendationRecipes')
             setRecommendationRecipes(data)
         } catch (err) {
             console.log(err)
@@ -91,6 +94,7 @@ export default function RecipeRecommendation() {
                         Click Here
                     </button>
                 </div>
+                <br></br><br></br>
                 <div>
                     <p>{recommendationRecipes}</p>
                     <p>{recommendationRecipes.Response}</p>

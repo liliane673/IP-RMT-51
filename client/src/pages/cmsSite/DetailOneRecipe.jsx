@@ -60,6 +60,7 @@ export default function DetailOneRecipe() {
     //     console.log(user, '=====> user')
     // }, [])
 
+
     return <>
         <NavBarCMSSite />
         <div className="container">
@@ -124,14 +125,35 @@ export default function DetailOneRecipe() {
                             <h1 className="card-title">Nutrition Facts</h1>
                         </div>
                         <br></br><br></br>
-                        <div>
-                            <button className="btn btn-primary" onClick={() => console.log("Tes")}>
-                                Show Nutrition Facts
-                            </button>
-                        </div>
+
                         <div>
                             {
-                                user.isSubscribed == false ? <p>sadsada</p> : <p>tess2</p>
+                                user.isSubscribed == false ?
+                                    <p>Please <b>Subscribe</b> first to access nutrition facts</p>
+                                    :
+                                    <div>
+                                        <ul>
+                                            <li>Calories : {recipe.Fact?.calories}</li>
+                                            <li>Serving Size : {recipe.Fact?.serving_size}</li>
+                                            <li>Calcium : {recipe.Fact?.calcium}</li>
+                                            <li>Carbohydrate : {recipe.Fact?.carbohydrate}</li>
+                                            <li>Cholesterol : {recipe.Fact?.cholesterol}</li>
+                                            <li>Fat : {recipe.Fact?.fat}</li>
+                                            <li>Fiber : {recipe.Fact?.fiber}</li>
+                                            <li>Iron : {recipe.Fact?.iron}</li>
+                                            <li>Monounsaturated Fat : {recipe.Fact?.monounsaturated_fat}</li>
+                                            <li>Polyunsaturated_fat : {recipe.Fact?.polyunsaturated_fat}</li>
+                                            <li>Potassium : {recipe.Fact?.potassium}</li>
+                                            <li>Protein : {recipe.Fact?.protein}</li>
+                                            <li>Saturated_fat : {recipe.Fact?.saturated_fat}</li>
+                                            <li>Ssodium : {recipe.Fact?.sodium}</li>
+                                            <li>Sugar : {recipe.Fact?.sugar}</li>
+                                            <li>Trans_fat : {recipe.Fact?.trans_fat}</li>
+                                            <li>Vitamin_a : {recipe.Fact?.vitamin_a}</li>
+                                            <li>Vitamin_c : {recipe.Fact?.vitamin_c}</li>
+                                        </ul>
+                                    </div>
+
                             }
                         </div>
                     </div>

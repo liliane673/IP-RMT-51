@@ -65,9 +65,7 @@ export default function SearchFilterOrder() {
 
 
     return <>
-        <div className="container" style={{
-            display: "flex",
-            alignItems: "center",
+        <div className="container d-flex flex-wrap justify-content-center" style={{
             marginTop: "20px"
         }}>
             <div className="row ">
@@ -80,7 +78,7 @@ export default function SearchFilterOrder() {
                         setSort={setSort}
                     />
                 </div>
-                <div className="col-md-2 ">
+                <div className="col-md-4 ">
                     <PageSizeFeature pageSize={pageSize} setPageSize={setPageSize} />
                 </div>
             </div>
@@ -90,7 +88,7 @@ export default function SearchFilterOrder() {
 
         </div>
 
-        <div className="container w-75 d-flex flex-wrap">
+        <div className="container-fluid d-flex flex-wrap justify-content-center gap-5">
             {recipe.map((recipe, index) => (
                 <RecipeCard key={index} recipe={recipe} />
             ))}
