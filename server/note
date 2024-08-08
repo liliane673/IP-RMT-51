@@ -56,3 +56,5 @@ npx sequelize db:seed:all --env test
 npx sequelize db:migrate:undo:all  && npx sequelize db:migrate  && npx sequelize db:seed:all
 
 npx sequelize db:migrate:undo:all --env test && npx sequelize db:migrate --env test && npx sequelize db:seed:all --env test
+
+npx sequelize db:migrate:undo:all --env production && npx sequelize db:migrate --env production && npx sequelize db:seed:all --env production
