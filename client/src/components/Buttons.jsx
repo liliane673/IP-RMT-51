@@ -12,13 +12,14 @@ export function SubmitButton() {
 
 export function CancelButton() {
     return <button
-        className="btn btn-outline-primary"
+        className="btn btn-outline-danger"
         type="cancel"
     >
         Cancel
     </button>
 
 }
+
 
 export function Buttons(props) {
     return <button
@@ -32,6 +33,14 @@ export function Buttons(props) {
 export function OutlineButtons(props) {
     return <button
         className="btn btn-outline-primary"
+    >
+        {props.children}
+    </button>
+}
+
+export function DeleteButton(props) {
+    return <button
+        className="btn btn-danger"
         type="submit"
     >
         {props.children}
@@ -43,4 +52,4 @@ Buttons.propTypes = {
 }
 
 
-export default { SubmitButton, CancelButton, Buttons, OutlineButtons }
+export default { SubmitButton, CancelButton, Buttons, OutlineButtons, DeleteButton }

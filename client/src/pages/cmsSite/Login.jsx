@@ -1,5 +1,5 @@
 import PropTypes from "prop-types"
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axiosInstance from "../../utils/axios";
 import { Buttons } from "../../components/Buttons";
@@ -44,6 +44,38 @@ export default function Login() {
 
         }
     }
+
+    async function handleCredentialResponse(response) {
+        try {
+            // console.log("Encoded JWT ID token: " + response.credential);
+
+            let { data } = await axiosInstance({
+                method: 'post',
+                url: '/google-login',
+                data: {
+                    googleToken: response.credential
+                }
+            });
+            // console.log(data, '====>data google login')
+            localStorage.setItem("token", data.access_token)
+            navigate("/cms/recipes")
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+
+    useEffect(() => {
+        google.accounts.id.initialize({
+            client_id: "983383379443-icooqvrf2s1lfgng04dr1430gnlt6ej2.apps.googleusercontent.com",
+            callback: handleCredentialResponse
+        });
+        google.accounts.id.renderButton(
+            document.getElementById("buttonDiv"),
+            { theme: "outline", size: "large" }  // customization attributes
+        );
+        // google.accounts.id.prompt(); // also display the One Tap dialog
+    }, [])
 
     return <div className="container" id="login-section">
         <div className="row" style={{ padding: "20px" }}>
@@ -95,11 +127,14 @@ export default function Login() {
                                         onChange={(e) => { setPassword(e.target.value) }}
                                     />
                                 </div>
+
                                 <Buttons>Login</Buttons>
+                                <br></br>  <br></br>
 
-                                <div style={{ marginTop: "30px" }}>
+                                <div id="buttonDiv"></div>
+
+                                <div className="d-flex" style={{ marginTop: "30px", alignContent: "center", justifyContent: "center" }}>
                                     <p>Don't have an account ? <Link to="/register">Register </Link>here</p>
-
                                 </div>
                             </form>
                         </div>

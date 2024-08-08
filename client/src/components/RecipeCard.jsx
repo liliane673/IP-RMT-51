@@ -6,7 +6,7 @@ export default function RecipeCard({ recipe }) {
         <img
             src={recipe.imgUrl}
             className="card-img-top"
-            alt="Fissure in Sandstone"
+            alt="Recipe image"
             height={"250px"}
         />
         <div className="card-body">
