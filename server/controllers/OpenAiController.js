@@ -53,7 +53,7 @@ module.exports = class OpenAiController {
             const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
             const prompt = `give me few recommendation recipes to ${preference} with some recipes ${data}
-            the response must be in JSON with the format like this wihout backtick
+            the response must be in JSON with the format like this  
             {
                 "Response": {...},
                 "Recommendation Recipes":
