@@ -28,7 +28,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       isSubscribed: {
-        type: Sequelize.STRING,
+        type: Sequelize.BOOLEAN,
         defaultValue: false,
       },
       bodyweight: {

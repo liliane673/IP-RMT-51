@@ -9,14 +9,14 @@ const { Recipe } = require('../models');
 module.exports = {
   async up(queryInterface, Sequelize) {
     const fs_token = await getFSToken()
-    // console.log(fs_token.data.access_token, 'fs_token.access_token===>>>')
+    console.log(fs_token.data.access_token, 'fs_token.access_token===>>>')
 
     let number = 1;
     let newFact = [];
     let newDataRecipe = [];
 
     try {
-      for (let i = 1; i < 20; i++) {
+      for (let i = 1; i < 25; i++) {
         const recipe_id = Math.ceil(Math.random() * 1_00 + 12)
 
         const dataRecipe = await getRecipes(fs_token.data.access_token, recipe_id)
@@ -46,7 +46,7 @@ module.exports = {
         }
       }
       //console.dir({ newFact }, { depth: 4 })
-      console.dir({ newDataRecipe }, { depth: 4 })
+      // console.dir({ newDataRecipe }, { depth: 4 })
       await queryInterface.bulkInsert('Facts', newFact)
       // await Recipe.bulkCreate(newDataRecipe)
       await queryInterface.bulkInsert('Recipes', newDataRecipe, {}, {

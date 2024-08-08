@@ -43,21 +43,11 @@ module.exports = (sequelize, DataTypes) => {
     phoneNumber: DataTypes.STRING,
     address: DataTypes.STRING,
     isSubscribed: {
-      type: DataTypes.STRING,
-      allowNull: true,
+      type: DataTypes.BOOLEAN,
     },
-    bodyweight: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
-    height: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
-    preference: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
+    bodyweight: DataTypes.INTEGER,
+    height: DataTypes.INTEGER,
+    preference: DataTypes.STRING,
   }, {
     sequelize,
     modelName: 'User',

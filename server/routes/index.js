@@ -5,12 +5,9 @@ require('dotenv').config()
 
 const router = require('express').Router()
 
-router.get('/', (req, res) => {
-    res.send('Hello World!')
-})
-
 //user endpoints
 router.use('/', require('./users'))
+router.use('/pub', require('./pub'))
 
 //authentication 
 router.use(authentication)

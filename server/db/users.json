@@ -18,7 +18,7 @@
         "password": "xA7='&LE|",
         "phoneNumber": "5635143444",
         "address": "252 Lake View Court",
-        "isSubscribed": false,
+        "isSubscribed": true,
         "bodyweight": 70,
         "height": 150,
         "preference": "lose bodyweight"

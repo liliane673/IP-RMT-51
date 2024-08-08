@@ -22,25 +22,44 @@ module.exports = class OpenAiController {
                         }
                     ],
             })
-            // console.log(data);
+            console.log(data, '---->data');
+
+            // let newArrayRecipe = []
+            // data.forEach((element, index) => {
+            //     newArrayRecipe.push({
+            //         'recipe_number': index,
+            //         'recipe_name': element.Recipe.title,
+            //         'recipe_ingredients': element.Recipe.ingredient,
+            //         'recipe_instructions': element.Recipe.direction,
+            //     });
+            // });
+
+            // console.log(newArrayRecipe, 'newArrayRecipe----->>>');
+
+            // let newingredients = []
+            // newArrayRecipe.forEach((element) => {
+            //     // console.log(element['recipe_ingredients'])
+            //     element['recipe_ingredients'].forEach((ing) => {
+            //         // console.log(ing.ingredient_description, '====>>')
+            //         newingredients.push(ing.ingredient_description)
+            //     });
+            // });
+            // console.log(newingredients)
 
             const { preference } = req.body
             // console.log(preference, '>>>>>')
 
             const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-
             const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
-
-            const prompt = `give me recommendation recipes above to ${preference}. the response must be in JSON with the format like this :
+            const prompt = `give me few recommendation recipes to ${preference} with some recipes ${data}
+            the response must be in JSON with the format like this wihout backtick
             {
                 "Response": {...},
                 "Recommendation Recipes":
                 [
                     {
                         "Recipe Name" : {...}
-                        "Ingredients" : {...}
-                        "Instrucions" : {...}
                         "Why":{...} 
                         "How to Enhance":{...}
                     }

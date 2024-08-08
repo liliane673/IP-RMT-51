@@ -4,7 +4,63 @@ const { User } = require('../models');
 const { hashPassword, comparePassword } = require('../helpers/bcrypt')
 const jwt = require('jsonwebtoken');
 
+const { OAuth2Client } = require('google-auth-library');
+
 module.exports = class UserController {
+    static async googleLogin(req, res, next) {
+        try {
+            // console.log(req.body, '=====>controller')
+            if (!req.body.googleToken) {
+                throw { name: "MissingGoogleToken" }
+            }
+
+            const client = new OAuth2Client();
+            const ticket = await client.verifyIdToken({
+                idToken: req.body.googleToken,
+                audience: process.env.GOOGLE_CLIENT_ID,  // Specify the CLIENT_ID of the app that accesses the backend
+                // Or, if multiple clients access the backend:
+                //[CLIENT_ID_1, CLIENT_ID_2, CLIENT_ID_3]
+            });
+            const response = ticket.getPayload();
+            // console.log(response)
+            // const userid = payload['sub'];
+            // If the request specified a Google Workspace domain:
+            // const domain = payload['hd'];
+
+            const [user] = await User.findOrCreate({
+                where: { email: response.email },
+                defaults: {
+                    username: response.given_name,
+                    email: response.email,
+                    password: Date.now().toString() + "DummyGoogleLogin" + Math.random().toFixed(0),
+                }
+            })
+            const SECRET_KEY = process.env.SECRET_KEY
+            const token = jwt.sign({ id: user.id }, SECRET_KEY);
+            res.status(200).json({ access_token: token });
+        } catch (err) {
+            next(err)
+        }
+    }
+
+    static async getDataUser(req, res, next) {
+        try {
+            const user = req.user.user
+            // console.log(user, '==>user')
+            res.status(201).json({
+                id: user.id,
+                username: user.username,
+                email: user.email,
+                isSubscribed: user.isSubscribed,
+                bodyweight: user.bodyweight,
+                height: user.height,
+                preference: user.preference,
+            })
+        } catch (err) {
+            next(err)
+        }
+    }
+
     static async login(req, res, next) {
         try {
             const { email, password } = req.body;
@@ -44,9 +100,9 @@ module.exports = class UserController {
     static async register(req, res, next) {
         try {
             // console.log(req.body,'====> masuk sini');
-            const { username, email, password, phoneNumber, address } = req.body
+            const { username, email, password, phoneNumber, address, bodyweight, height, preference } = req.body
 
-            const user = await User.create({ username, email, password, phoneNumber, address })
+            const user = await User.create({ username, email, password, phoneNumber, address, bodyweight, height, preference })
 
             res.status(201).json({
                 id: user.id,
