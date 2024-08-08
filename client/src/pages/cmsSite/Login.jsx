@@ -47,7 +47,7 @@ export default function Login() {
 
     async function handleCredentialResponse(response) {
         try {
-            // console.log("Encoded JWT ID token: " + response.credential);
+            console.log("Encoded JWT ID token: " + response.credential);
 
             let { data } = await axiosInstance({
                 method: 'post',

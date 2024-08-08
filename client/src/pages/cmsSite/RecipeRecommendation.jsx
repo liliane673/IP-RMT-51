@@ -5,6 +5,7 @@ import { OutlineButtons } from "../../components/Buttons";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux'
 import { fetchUser } from "../../store/sliceUser";
+import Markdown from 'react-markdown'
 
 
 export default function RecipeRecommendation() {
@@ -12,7 +13,7 @@ export default function RecipeRecommendation() {
     const user = useSelector(state => state.user.all)
     // console.log(user, '======INI REDUX')
 
-    const [recommendationRecipes, setRecommendationRecipes] = useState([]);
+    const [recommendationRecipes, setRecommendationRecipes] = useState('');
     // const [user, setUser] = useState({})
 
     const handleRecommendationRecipe = async () => {
@@ -28,14 +29,18 @@ export default function RecipeRecommendation() {
                     preference: user.preference
                 }
             });
-            // console.log(data)
+            //             console.log(data.text.split("\n"))
+            //             console.log(data.text.split("***")[0].slice(8, -4))
+            //             console.log(JSON.parse(data.text.split(` 
+
+            // *`)[0].slice(8, -4)))
             // const count = data.length;
             // console.log(count, count - 3);
 
             // const newData = console.log(data.substr(7, count - 3), '====substring')
             // const dataparse = JSON.parse(newData);
             // console.log(newData, '---> ini di setRecommendationRecipes')
-            setRecommendationRecipes(data)
+            setRecommendationRecipes(data.text)
         } catch (err) {
             console.log(err)
             console.log(err.response.data)
@@ -85,20 +90,10 @@ export default function RecipeRecommendation() {
                 </div>
                 <br></br><br></br>
                 <div>
-                    <p>{recommendationRecipes}</p>
-                    <p>{recommendationRecipes.Response}</p>
-                </div>
-                <div>
-                    <h2>{recommendationRecipes.Response}</h2>
-                    <ul>
-                        {/* {recommendationRecipes["Recommendation Recipes"].map((recipe, index) => (
-                            <li key={index}>
-                                <h3>{recipe["Recipe Name"]}</h3>
-                                <p><strong>Why:</strong> {recipe.Why}</p>
-                                <p><strong>How to Enhance:</strong> {recipe["How to Enhance"]}</p>
-                            </li>
-                        ))} */}
-                    </ul>
+                    <Markdown>
+                        {recommendationRecipes}
+                        {/* {JSON.parse(recommendationRecipes).response} */}
+                    </Markdown>
                 </div>
             </div>
         </div>
