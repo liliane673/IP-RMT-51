@@ -28,13 +28,13 @@ export default function MySavedRecipes() {
         fetchMySavedRecipes()
     }, [])
 
-    const deleteMySavedRecipe = async (recipe) => {
+    const deleteMySavedRecipe = async (id) => {
         // console.log("deletemySavedRecipet===>")
         // console.log(recipe, 'recipe')
         try {
             let { data } = await axiosInstance({
                 method: 'delete',
-                url: '/my-saved-recipes/' + recipe.id,
+                url: '/my-saved-recipes/' + id,
                 headers: {
                     "Authorization-AccessToken": "Bearer " + localStorage.getItem("token")
                 }

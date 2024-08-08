@@ -74,7 +74,7 @@ export default function RecipeRecommendation() {
                 </div>
                 <div style={{ marginTop: "30px" }}>
                     <h3>Your Personal Data</h3>
-                    <ul class="list-group list-group-flush">
+                    <ul className="list-group list-group-flush">
                         <li className="list-group-item">Your Body Weight : {user.bodyweight} kg</li>
                         <li className="list-group-item">Your Height :{user.height} cm</li>
                         <li className="list-group-item">Your Preference : to {user.preference}</li>

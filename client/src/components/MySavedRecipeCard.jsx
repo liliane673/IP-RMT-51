@@ -17,7 +17,7 @@ export default function MySavedRecipeCard({ recipe, deleteMySavedRecipe }) {
                     "Authorization-AccessToken": "Bearer " + localStorage.getItem("token")
                 }
             });
-            console.log(data, '---> ini di add addMyRecipe');
+            // console.log(data, '---> ini di add addMyRecipe');
             navigate("cms/my-saved-recipes")
         } catch (err) {
             console.log(err)
@@ -43,26 +43,7 @@ export default function MySavedRecipeCard({ recipe, deleteMySavedRecipe }) {
                 <span className="badge rounded-pill text-bg-secondary" style={{ fontSize: "15px", marginBottom: "5px" }}>Category: {recipe.Recipe.category}</span>
                 <br></br>
                 <span className="badge rounded-pill text-bg-secondary" style={{ fontSize: "15px" }}>Type: {recipe.Recipe.type}</span>
-                {/* <div>
-                    <p className="card-text" >Ingredients :
-                        {
-                            recipe.ingredient.map((ingredient) => {
-                                console.log(ingredient, '====>disini')
-                                return <li>{ingredient.ingredient_description}</li>
-                            })
-                        }
-                    </p>
-                </div>
-                <div>
-                    <p className="card-text" >Directions :
-                        {
-                            recipe.direction.map((direction) => {
-                                console.log(direction, '====>disini')
-                                return <li>{direction.direction_description}</li>
-                            })
-                        }
-                    </p>
-                </div> */}
+
                 <br></br>
                 <br></br>
 
@@ -72,9 +53,9 @@ export default function MySavedRecipeCard({ recipe, deleteMySavedRecipe }) {
                             See Detail
                         </OutlineButtons>
                     </Link>
-                    <DeleteButton className="btn btn-primary" onClick={() => deleteMySavedRecipe(recipe)}>
+                    <button className="btn btn-danger" onClick={() => deleteMySavedRecipe(recipe.id)}>
                         Delete
-                    </DeleteButton>
+                    </button>
                 </div>
             </div>
         </div >
