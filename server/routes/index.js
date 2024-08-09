@@ -5,18 +5,15 @@ require('dotenv').config()
 
 const router = require('express').Router()
 
-router.get('/', (req, res) => {
-    res.send('Hello World!')
-})
-
 //user endpoints
-router.use('/', require('./users'))
+router.use('/', require('./users.js'))
+router.use('/pub', require('./pub.js'))
 
 //authentication 
 router.use(authentication)
 
 //recipes endpoints
-router.use('/recipes', require('./recipes'))
+router.use('/recipes', require('./recipes.js'))
 
 //saved-recipes endpoints
 router.use('/my-saved-recipes', require('./saved-recipes.js'))

@@ -17,6 +17,9 @@ module.exports = class SavedRecipeController {
                         },
                         {
                             model: Recipe,
+                            include: {
+                                model: Fact
+                            }
                         }
                     ],
 

@@ -15,6 +15,10 @@ function errorHandler(err, req, res, next) {
             status = 401
             message = "Invalid Token"
             break;
+        case "MissingGoogleToken":
+            status = 401
+            message = "Google Login Failed"
+            break;
         case "Forbidden":
             status = 403
             message = "You are not authorized"
